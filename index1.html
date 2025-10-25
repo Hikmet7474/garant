@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакти 📞 - Casio Time</title>
+    <style>
+        /* Глобальні змінні кольорів (скопійовані з casio.html) */
+        :root {
+            --primary-blue: #1A237E;
+            --accent-blue: #448AFF;
+            --text-color: #333;
+            --light-bg: #E3F2FD;
+            --white: #ffffff;
+        }
+
+        /* Стилі для шапки та навігації */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 20px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2em;
+            letter-spacing: 1.5px;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 8px;
+            border-radius: 50px;
+            border: 2px solid var(--accent-blue);
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: var(--accent-blue);
+            color: var(--primary-blue);
+            box-shadow: 0 0 10px var(--accent-blue);
+        }
+        
+        /* Стилі для блоку контактів */
+        .container {
+            padding: 30px;
+            max-width: 700px;
+            margin: 40px auto;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .container h2 {
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+            font-size: 2em;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            font-size: 1.2em;
+            border-bottom: 1px solid #E0E0E0;
+            padding-bottom: 15px;
+        }
+        
+        .contact-item:last-child {
+             border-bottom: none;
+        }
+
+        .contact-item strong {
+            color: var(--primary-blue);
+            margin-right: 15px;
+            font-size: 1.5em;
+        }
+
+        .contact-item a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .contact-item a:hover {
+            color: var(--primary-blue);
+            text-decoration: underline;
+        }
+        
+        /* Стилі для футера (Footer) */
+        footer {
+            background-color: var(--primary-blue);
+            color: #BBDEFB;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 40px;
+            font-size: 0.9em;
+        }
+
+        /* Адаптивність */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            nav a {
+                display: block;
+                margin: 5px auto;
+                width: 70%;
+            }
+            .contact-item {
+                flex-direction: column;
+                align-items: center;
+            }
+            .contact-item strong {
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
+            .container {
+                 padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>💎 Зв'яжіться з нами 📞</h1>
+        <p>Ми завжди раді відповісти на ваші запитання!</p>
+        <nav>
+            <a href="casio.html">Годинники (Каталог)</a>
+            <a href="casio 2.html">Зв'язок з нами</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Наші Контакти та Графік</h2>
+        
+        <div class="contact-item">
+            <strong>☎️</strong>
+            <a href="tel:+380XXXXXXXXX">+38 (0XX) XXX-XX-XX</a> </div>
+        
+        <div class="contact-item">
+            <strong>📧</strong>
+            <a href="mailto:your.email@example.com">your.email@example.com</a> </div>
+        
+        <div class="contact-item">
+            <strong>✈️</strong>
+            <a href="https://t.me/your_telegram_id" target="_blank">Telegram: @YourTelegramID</a> </div>
+        
+        <div class="contact-item">
+            <strong>📸</strong>
+            <a href="https://instagram.com/your_instagram_id" target="_blank">Instagram: @YourInstagramID</a> </div>
+
+        <h3 style="color: var(--accent-blue); margin-top: 30px;">⏱️ Години роботи:</h3>
+        <p style="font-style: italic;">Пн-Пт: 10:00 – 20:00 (Консультації та відправки)</p>
+        <p style="font-style: italic;">Сб-Нд: 11:00 – 18:00 (Тільки онлайн консультації)</p>
+    </div>
+
+    <footer>
+        CASIO TIME &bull; Зв'язок 24/7 у месенджерах
+    </footer>
+
+</body>
+</html>

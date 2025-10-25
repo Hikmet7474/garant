@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✦ Casio Time ✦ - Офіційний магазин</title>
+    <style>
+        /* Глобальні змінні кольорів */
+        :root {
+            --primary-blue: #1A237E; 
+            --accent-blue: #448AFF; 
+            --text-color: #333;
+            --light-bg: #E3F2FD; 
+            --white: #ffffff;
+            --success-green: #4CAF50;
+            --danger-red: #F44336;
+            --dark-gray: #616161; 
+        }
+
+        /* Базові та Шапка */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 20px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.2em;
+            letter-spacing: 1.5px;
+        }
+        nav {
+            margin-top: 15px;
+        }
+        nav a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 8px;
+            border-radius: 50px;
+            border: 2px solid var(--accent-blue);
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            background-color: var(--accent-blue);
+            color: var(--primary-blue);
+            box-shadow: 0 0 10px var(--accent-blue);
+        }
+        .promo-banner {
+            background-color: #FFC107;
+            color: var(--primary-blue);
+            text-align: center;
+            padding: 10px 0;
+            font-weight: bold;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        /* Стилі картки товару */
+        .product-card {
+            background-color: var(--white);
+            border: 1px solid #BBDEFB;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding-bottom: 20px;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .main-image-wrapper {
+            position: relative;
+            padding: 20px 0 10px;
+            overflow: hidden;
+        }
+
+        /* Додамо плавний перехід для головного зображення */
+        .main-image-wrapper img {
+            width: 90%;
+            height: auto;
+            max-height: 280px;
+            object-fit: contain;
+            transition: transform 0.5s, opacity 0.3s; /* Додано opacity для плавного переходу */
+        }
+        
+        .product-card:hover .main-image-wrapper img {
+            transform: scale(1.03);
+        }
+        
+        /* Галерея з міні-фото */
+        .product-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 10px 15px;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
+        }
+
+        .product-card:hover .product-gallery {
+            opacity: 1;
+            max-height: 100px;
+        }
+
+        .gallery-thumb {
+            width: 70px;
+            height: 70px;
+            border: 2px solid var(--light-bg);
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .gallery-thumb:hover {
+            border-color: var(--accent-blue);
+        }
+
+        .gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* ЦІНА ТА ЗНИЖКА */
+        .price-block {
+            margin: 15px 0 5px;
+            padding: 0 15px;
+        }
+        .old-price {
+            color: #999;
+            margin-right: 10px;
+            font-weight: normal;
+            text-decoration: line-through;
+            font-size: 1em;
+        }
+        .current-price {
+            color: var(--danger-red);
+            font-size: 1.6em;
+            font-weight: bold;
+        }
+        .save-info {
+            color: var(--success-green);
+            font-weight: bold;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+
+        /* БЛОК "ЧОМУ МИ?" */
+        .why-us {
+            margin-top: 50px;
+            padding: 30px 20px;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .advantages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .advantage-item h3 {
+            color: var(--primary-blue);
+            font-size: 1.1em;
+            margin: 10px 0 5px;
+        }
+
+        .advantage-item p {
+            color: var(--dark-gray);
+            font-size: 0.9em;
+        }
+
+        .advantage-item span {
+            font-size: 2.5em; 
+            display: block;
+            line-height: 1;
+        }
+        
+        /* Кінцеві стилі */
+        .product-card h2 {
+            color: var(--primary-blue);
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        .availability {
+            font-weight: bold;
+            padding: 5px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+            text-transform: uppercase;
+            font-size: 0.85em;
+        }
+        .in-stock {
+            background-color: var(--success-green); 
+            color: var(--white);
+        }
+        .out-of-stock {
+            background-color: var(--danger-red); 
+            color: var(--white);
+        }
+        .btn-order {
+            display: block;
+            width: 80%;
+            margin: 15px auto 0;
+            padding: 12px 20px;
+            background-color: var(--accent-blue);
+            color: var(--white);
+            text-decoration: none;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 5px 10px rgba(68, 138, 255, 0.5);
+        }
+        .btn-order:hover {
+            background-color: #64B5F6;
+            transform: scale(1.02);
+        }
+        footer {
+            background-color: var(--primary-blue);
+            color: #BBDEFB;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 40px;
+            font-size: 0.9em;
+        }
+
+        /* Адаптивність */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            nav a {
+                display: block;
+                margin: 5px auto;
+                width: 70%;
+            }
+            .product-list, .advantages {
+                grid-template-columns: 1fr;
+            }
+             .product-gallery {
+                opacity: 1; 
+                max-height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>💎 GARANT TIME 💎</h1>
+        <p>Ідеальний годинник для вашого стилю</p>
+        <nav>
+            <a href="casio.html">Годинники (Каталог)</a>
+            <a href="casio 2.html">Зв'язок з нами</a>
+        </nav>
+    </header>
+    
+    <div class="promo-banner">
+        🚀 БЕЗКОШТОВНА ДОСТАВКА при замовленні двох годинників! 🚀
+    </div>
+
+    <div class="container">
+        <h2 style="text-align: center; color: var(--primary-blue); margin-bottom: 30px;">Ексклюзивні моделі та бестселери</h2>
+        <div class="product-list">
+            
+            <div class="product-card">
+                <div class="main-image-wrapper">
+                    <img id="main-img-1" src="https://m.media-amazon.com/images/I/81dvbfNe8HL._AC_UY900_.jpg" 
+                         alt="Casio MTP-1375 Чорний" 
+                         data-original-src="https://m.media-amazon.com/images/I/81dvbfNe8HL._AC_UY900_.jpg"> 
+                </div>
+                <div class="product-gallery">
+                    <div class="gallery-thumb" data-target-img="main-img-1" 
+                         onmouseover="swapImage(this)" 
+                         onmouseout="resetImage(this)">
+                        <img src="https://tempus.by/upload/dev2fun.imagecompress/webp/iblock/a81/f4c9rgk4w0ficvnxeiaptul1zknvorvj.webp" alt="Вигляд збоку">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-1" 
+                         onmouseover="swapImage(this)" 
+                         onmouseout="resetImage(this)">
+                        <img src="https://ostriyshop.com/image/cache/catalog/image/cache/catalog/products/Collection/MTP-1375D-2A1-2-1350x1080.webp" alt="Застібка">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-1" 
+                         onmouseover="swapImage(this)" 
+                         onmouseout="resetImage(this)">
+                        <img src="https://ostriyshop.com/image/cache/webp/catalog/products/Collection/MTP-1375D-1AVDF-1-1350x1080.webp" alt="На руці">
+                    </div>
+                </div>
+                <h2>MTP-1375D-1AV (Чорний)</h2>
+                <p>✨ **Преміальна класика.** Функції день/дата, мінеральне скло, водозахист 50м.</p>
+                <p><strong>Колір:</strong> Глибокий чорний</p>
+                
+                <div class="price-block">
+                    <p class="price" style="margin: 0;">
+                        <span class="old-price">6499 грн</span> 
+                        <span class="current-price">3000 грн</span>
+                    </p>
+                    <p class="save-info">🔥 Економія 3499 грн!</p>
+                </div>
+
+                <span class="availability in-stock">✅ В наявності (Хіт!)</span>
+                <a href="casio 2.html" class="btn-order">📞 Замовити зараз</a>
+            </div>
+
+            <div class="product-card">
+                <div class="main-image-wrapper">
+                    <img id="main-img-2" src="images/1375_white_main.jpg" 
+                         alt="Casio MTP-1375 Білий"
+                         data-original-src="https://ostriyshop.com/image/cache/webp/catalog/products/Collection/MTP-1375D-7A-2-1350x1080.webp">
+                </div>
+                <div class="product-gallery">
+                    <div class="gallery-thumb" data-target-img="main-img-2" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="https://www.ankerwatch.ru/upload/iblock/9ad/s7cyqjs2pb57vshha4t68y6votr95ih3/MTP_1375D_7A_2.jpg" alt="Вигляд збоку">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-2" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="https://ostriyshop.com/image/cache/catalog/image/cache/catalog/products/Collection/MTP-1375D-2A1-2-1350x1080.webp" alt="Застібка">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-2" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="https://abtime.com.ua/image/cache/catalog/unixml/6540/19582/casio_mtp_1375d_7a_126-1000x1000.jpg" alt="На руці">
+                    </div>
+                </div>
+                <h2>MTP-1375D-7AV (Білий)</h2>
+                <p>💫 **Елегантний блиск.** Сріблястий корпус, білосніжний циферблат. Ідеально під костюм.</p>
+                <p><strong>Колір:</strong> Чистий білий</p>
+
+                <div class="price-block">
+                    <p class="price" style="margin: 0;">
+                        <span class="old-price">6799 грн</span> 
+                        <span class="current-price">3100 грн</span>
+                    </p>
+                    <p class="save-info">🔥 Економія 3699 грн!</p>
+                </div>
+                
+                <span class="availability in-stock">✅ В наявності</span>
+                <a href="casio 2.html" class="btn-order">📞 Замовити зараз</a>
+            </div>
+
+            <div class="product-card">
+                 <div class="main-image-wrapper">
+                    <img id="main-img-3" src="images/1302_black_main.jpg" 
+                         alt="Casio MTP-1302 Чорний"
+                         data-original-src="images/1302_black_main.jpg">
+                </div>
+                <div class="product-gallery">
+                    <div class="gallery-thumb" data-target-img="main-img-3" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/1302_black_side.jpg" alt="Вигляд збоку">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-3" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/1302_black_clasp.jpg" alt="Застібка">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-3" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/1302_black_back.jpg" alt="Задня кришка">
+                    </div>
+                </div>
+                <h2>MTP-1302PD-1A1V (Чорний)</h2>
+                <p>🖤 **Мінімалізм і стиль.** Базова модель, що завжди актуальна. Тільки дата.</p>
+                <p><strong>Колір:</strong> Класичний чорний</p>
+                
+                <div class="price-block">
+                    <p class="price" style="margin: 0;">
+                        <span class="current-price" style="color: var(--text-color);">2800 грн</span>
+                    </p>
+                    <p class="save-info" style="color: var(--dark-gray);">⭐ Стандартна ціна</p>
+                </div>
+
+                <span class="availability in-stock">✅ В наявності</span>
+                <a href="casio 2.html" class="btn-order">📞 Замовити зараз</a>
+            </div>
+
+            <div class="product-card">
+                 <div class="main-image-wrapper">
+                    <img id="main-img-4" src="images/1302_white_main.jpg" 
+                         alt="Casio MTP-1302 Білий"
+                         data-original-src="images/1302_white_main.jpg">
+                </div>
+                <div class="product-gallery">
+                    <div class="gallery-thumb" data-target-img="main-img-4" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/1302_white_side.jpg" alt="Вигляд збоку">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-4" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/1302_white_clasp.jpg" alt="Застібка">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-4" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/1302_white_back.jpg" alt="Задня кришка">
+                    </div>
+                </div>
+                <h2>MTP-1302PD-7A1V (Білий)</h2>
+                <p>💡 **Універсальний вибір.** Легкий та комфортний. Ідеальний для повсякдення.</p>
+                <p><strong>Колір:</strong> Світлий білий</p>
+
+                <div class="price-block">
+                    <p class="price" style="margin: 0;">
+                        <span class="current-price" style="color: var(--text-color);">2800грн</span>
+                    </p>
+                    <p class="save-info" style="color: var(--dark-gray);">⭐ Стандартна ціна</p>
+                </div>
+
+                <span class="availability in-stock">✅ В наявності</span>
+                <a href="casio 2.html" class="btn-order">📞 Замовити зараз</a>
+            </div>
+            
+            <div class="product-card">
+                 <div class="main-image-wrapper">
+                    <img id="main-img-5" src="images/new_model_1_main.jpg" 
+                         alt="Нова модель Casio 1"
+                         data-original-src="images/new_model_1_main.jpg">
+                </div>
+                <div class="product-gallery">
+                    <div class="gallery-thumb" data-target-img="main-img-5" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/new_model_1_side.jpg" alt="Вигляд збоку">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-5" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/new_model_1_strap.jpg" alt="Ремінець">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-5" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/new_model_1_detail.jpg" alt="Деталь">
+                    </div>
+                </div>
+                <h2>🔥 Нова Модель (Коричневий ремінець)</h2>
+                <p>💼 **Діловий стиль.** Елегантна класика з календарем на шкіряному ремінці.</p>
+                <p><strong>Колір:</strong> Коричневий</p>
+
+                <div class="price-block">
+                    <p class="price" style="margin: 0;">
+                        <span class="old-price">2200 грн</span> 
+                        <span class="current-price">1950 грн</span>
+                    </p>
+                    <p class="save-info">💥 Прем'єрна знижка!</p>
+                </div>
+
+                <span class="availability in-stock">✅ В наявності</span>
+                <a href="casio 2.html" class="btn-order">📞 Замовити зараз</a>
+            </div>
+            
+            <div class="product-card">
+                 <div class="main-image-wrapper">
+                    <img id="main-img-6" src="images/new_model_2_main.jpg" 
+                         alt="Нова модель Casio 2"
+                         data-original-src="images/new_model_2_main.jpg">
+                </div>
+                <div class="product-gallery">
+                    <div class="gallery-thumb" data-target-img="main-img-6" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/new_model_2_side.jpg" alt="Вигляд збоку">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-6" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/new_model_2_clasp.jpg" alt="Застібка">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-6" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/new_model_2_chrono.jpg" alt="Хронограф">
+                    </div>
+                </div>
+                <h2>🚀 Нова Модель (Спортивний Хронограф)</h2>
+                <p>⏱️ **Функціональність.** Модель із хронографом, ідеально для активного відпочинку.</p>
+                <p><strong>Колір:</strong> Темно-синій</p>
+
+                <div class="price-block">
+                    <p class="price" style="margin: 0;">
+                        <span class="current-price" style="color: var(--text-color);">2499 грн</span>
+                    </p>
+                    <p class="save-info" style="color: var(--dark-gray);">⭐ Новинка у каталозі</p>
+                </div>
+
+                <span class="availability in-stock">✅ В наявності</span>
+                <a href="casio 2.html" class="btn-order">📞 Замовити зараз</a>
+            </div>
+            
+            <div class="product-card">
+                 <div class="main-image-wrapper">
+                    <img id="main-img-7" src="images/new_model_3_main.jpg" 
+                         alt="Нова модель Casio 3"
+                         data-original-src="images/new_model_3_main.jpg">
+                </div>
+                <div class="product-gallery">
+                    <div class="gallery-thumb" data-target-img="main-img-7" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/new_model_3_side.jpg" alt="Вигляд збоку">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-7" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/new_model_3_detail.jpg" alt="Деталь">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-7" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/new_model_3_on_wrist.jpg" alt="На руці">
+                    </div>
+                </div>
+                <h2>🌸 Нова Модель (Срібло та Рожевий)</h2>
+                <p>💖 **Жіноча елегантність.** Тонкий корпус і вишуканий дизайн.</p>
+                <p><strong>Колір:</strong> Срібний / Рожеве золото</p>
+
+                <div class="price-block">
+                    <p class="price" style="margin: 0;">
+                        <span class="old-price">1650 грн</span> 
+                        <span class="current-price">1399 грн</span>
+                    </p>
+                    <p class="save-info">🎁 Ідеально на подарунок!</p>
+                </div>
+
+                <span class="availability in-stock">✅ В наявності (Акція!)</span>
+                <a href="casio 2.html" class="btn-order">📞 Замовити зараз</a>
+            </div>
+            
+            <div class="product-card">
+                 <div class="main-image-wrapper">
+                    <img id="main-img-8" src="images/new_model_4_main.jpg" 
+                         alt="Нова модель Casio 4"
+                         data-original-src="images/new_model_4_main.jpg">
+                </div>
+                <div class="product-gallery">
+                    <div class="gallery-thumb" data-target-img="main-img-8" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/new_model_4_bezel.jpg" alt="Безель">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-8" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/new_model_4_clasp.jpg" alt="Застібка">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-8" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/new_model_4_side.jpg" alt="Вигляд збоку">
+                    </div>
+                </div>
+                <h2>🌊 Нова Модель (Водолазна)</h2>
+                <p>💪 **Надійність.** Міцний корпус, високий водозахист та безель.</p>
+                <p><strong>Колір:</strong> Чорний / Червоний акцент</p>
+
+                <div class="price-block">
+                    <p class="price" style="margin: 0;">
+                        <span class="current-price" style="color: var(--text-color);">3150 грн</span>
+                    </p>
+                    <p class="save-info" style="color: var(--dark-gray);">⭐ Професійна серія</p>
+                </div>
+
+                <span class="availability in-stock">✅ В наявності</span>
+                <a href="casio 2.html" class="btn-order">📞 Замовити зараз</a>
+            </div>
+            
+            <div class="product-card">
+                 <div class="main-image-wrapper">
+                    <img id="main-img-9" src="images/new_model_5_main.jpg" 
+                         alt="Нова модель Casio 5"
+                         data-original-src="images/new_model_5_main.jpg">
+                </div>
+                <div class="product-gallery">
+                    <div class="gallery-thumb" data-target-img="main-img-9" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/new_model_5_side.jpg" alt="Вигляд збоку">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-9" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/new_model_5_screen.jpg" alt="Екран">
+                    </div>
+                    <div class="gallery-thumb" data-target-img="main-img-9" onmouseover="swapImage(this)" onmouseout="resetImage(this)">
+                        <img src="images/new_model_5_on_wrist.jpg" alt="На руці">
+                    </div>
+                </div>
+                <h2>💾 Нова Модель (Срібне Ретро)</h2>
+                <p>⭐ **Культова модель.** Класичний електронний дисплей, металевий браслет.</p>
+                <p><strong>Колір:</strong> Срібний</p>
+
+                <div class="price-block">
+                    <p class="price" style="margin: 0;">
+                        <span class="old-price">1300 грн</span> 
+                        <span class="current-price">999 грн</span>
+                    </p>
+                    <p class="save-info">💰 Найкраща ціна!</p>
+                </div>
+
+                <span class="availability in-stock">✅ В наявності (Топ-продаж!)</span>
+                <a href="casio 2.html" class="btn-order">📞 Замовити зараз</a>
+            </div>
+            
+        </div>
+        
+        <div class="why-us">
+            <h2 style="color: var(--accent-blue); text-align: center; margin-bottom: 25px;">Чому обирають CASIO TIME?</h2>
+            <div class="advantages">
+                
+                <div class="advantage-item">
+                    <span>🛡️</span>
+                    <h3>Офіційна Гарантія</h3>
+                    <p>На всі годинники Casio надається повна гарантія 24 місяці.</p>
+                </div>
+                
+                <div class="advantage-item">
+                    <span>✅</span>
+                    <h3>100% Оригінал</h3>
+                    <p>Продаємо тільки справжній годинник Casio, перевірений на якість.</p>
+                </div>
+                
+                <div class="advantage-item">
+                    <span>📦</span>
+                    <h3>Швидка Доставка</h3>
+                    <p>Відправка в день замовлення. Доставка по Україні 1-2 дні.</p>
+                </div>
+                
+                
+                
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        CASIO TIME &bull; Надійність перевірена часом &bull; Всі права захищені 2025
+    </footer>
+
+    <script>
+        /**
+         * Функція, яка змінює головне зображення на зображення з мініатюри
+         * при наведенні курсора (onmouseover).
+         * @param {HTMLElement} thumbElement - Елемент мініатюри, на яку наведено курсор.
+         */
+        function swapImage(thumbElement) {
+            // 1. Знаходимо шлях до зображення з мініатюри
+            const newSrc = thumbElement.querySelector('img').src;
+            
+            // 2. Визначаємо ID головного зображення, яке потрібно змінити
+            const mainImgId = thumbElement.getAttribute('data-target-img');
+            
+            // 3. Знаходимо елемент головного зображення
+            const mainImgElement = document.getElementById(mainImgId);
+            
+            if (mainImgElement) {
+                // Зберігаємо оригінальний шлях як data-attribute, якщо його ще немає
+                if (!mainImgElement.getAttribute('data-original-src')) {
+                    mainImgElement.setAttribute('data-original-src', mainImgElement.src);
+                }
+                
+                // Змінюємо головне зображення
+                mainImgElement.src = newSrc;
+                // Додатково можна додати ефект, щоб зміна була помітнішою, наприклад, тимчасово зменшити opacity:
+                mainImgElement.style.opacity = '0.9'; 
+            }
+        }
+
+        /**
+         * Функція, яка повертає головне зображення до оригінального
+         * при відведенні курсора (onmouseout).
+         * @param {HTMLElement} thumbElement - Елемент мініатюри, з якої відведено курсор.
+         */
+        function resetImage(thumbElement) {
+            // 1. Визначаємо ID головного зображення
+            const mainImgId = thumbElement.getAttribute('data-target-img');
+            
+            // 2. Знаходимо елемент головного зображення
+            const mainImgElement = document.getElementById(mainImgId);
+            
+            if (mainImgElement) {
+                // 3. Знаходимо оригінальний шлях і відновлюємо його
+                const originalSrc = mainImgElement.getAttribute('data-original-src');
+                if (originalSrc) {
+                    mainImgElement.src = originalSrc;
+                    mainImgElement.style.opacity = '1';
+                }
+            }
+        }
+
+        // Ініціалізація: Додаємо data-attributes до всіх карток, якщо вони не вказані
+        document.querySelectorAll('.product-card').forEach((card, index) => {
+            const mainImg = card.querySelector('.main-image-wrapper img');
+            if (mainImg && !mainImg.id) {
+                // Присвоюємо унікальний ID головному зображенню
+                const newId = `main-img-${index + 1}`;
+                mainImg.id = newId;
+                
+                // Зберігаємо оригінальний SRC
+                mainImg.setAttribute('data-original-src', mainImg.src);
+                
+                // Присвоюємо мініатюрам цей ID
+                card.querySelectorAll('.gallery-thumb').forEach(thumb => {
+                    thumb.setAttribute('data-target-img', newId);
+                    thumb.setAttribute('onmouseover', 'swapImage(this)');
+                    thumb.setAttribute('onmouseout', 'resetImage(this)');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
